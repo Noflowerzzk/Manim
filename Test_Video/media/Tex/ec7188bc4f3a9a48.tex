@@ -1,0 +1,14 @@
+\documentclass[preview]{standalone}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{amsthm}
+\everymath{\displaystyle}
+\newcommand{\lb}{\left\llbracket}
+\newcommand{\rb}{\right\rrbracket}
+\begin{document}
+\begin{align*}
+& p, q \neq 0 \text{ 或 } 1, \frac{1}{p} + \frac{1}{q} = 1, \\ & \text{则对任意正数数列 } \{a_k\}_{k=1}^n, \{b_k\}_{k=1}^n, \text{ 有} \\ & \sum_{i = 1}^n a_ib_i \leqslant \left(\sum_{i = 1}^{n}a_i^p\right)^{\frac{1}{p}} \cdot \left(\sum_{i = 1}^{n}b_i^q\right)^{\frac{1}{q}}  \quad p > 1 \\ & \sum_{i = 1}^n a_ib_i \geqslant \left(\sum_{i = 1}^{n}a_i^p\right)^{\frac{1}{p}} \cdot \left(\sum_{i = 1}^{n}b_i^q\right)^{\frac{1}{q}}  \quad p < 1
+\end{align*}
+\end{document}
