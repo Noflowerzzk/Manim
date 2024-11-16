@@ -10,7 +10,7 @@ class ConvexFunction(Scene):
     def construct(self):
         
         # 片头
-        # self.MyLogo()
+        self.MyLogo()
         
         self.DefineConvexFunction_1()
         
