@@ -10,23 +10,128 @@ class ConvexFunction(Scene):
     def construct(self):
         
         # 片头
-        self.MyLogo()
+        # self.MyLogo()
         
-        self.DefineConvexFunction()
+        self.DefineConvexFunction_1()
         
-    def DefineConvexFunction(self):
+    def DefineConvexFunction_1(self):
         DefOfConvexFunction = MathTex(
-            r"& \text{对于函数 } f(x) \text{ 定义域的任意区间 } [a, b], \text{ 有任意 } \lambda \in [0, 1], \text{ 满足} \\",
+            r"& \text{对于函数 }\ f(x) \text{ 定义域内任意两数 } x_1 < x_2, \text{ 有任意 } \lambda \in [0, 1], \text{ 满足} \\",
             r"& f(\lambda x_1 + (1 - \lambda) x_2) \leq \lambda f(x_1) + (1 - \lambda) f(x_2) \\",
-            r"& \text{则 } f(x) \text{ 为其定义区间上的下凸函数.}",
+            r"& \text{则 }\ f(x) \text{ 为其定义区间上的下凸函数.}",
             tex_environment="align*"            
         )
         
-        DefOfConvexFunction.shift(UP * 2 + LEFT * 3).font_size = 24
+        DefOfConvexFunction.shift(UP * 2 + LEFT * 2).font_size = 30
         
         self.play(Write(DefOfConvexFunction))
         
+        self.DefineConvexFunctionGraph()
+        
+        # 淡出所有对象
+        self.play(*[FadeOut(obj) for obj in self.mobjects])
+        
         self.wait(3)
+        
+    def DefineConvexFunctionGraph(self):
+        # 创建一个小型坐标轴
+        axes = Axes(
+            x_range=[-0.1, 3, 0.5],  # 设置 x 轴范围 [-2, 2]，步长为 1
+            y_range=[-0.1, 2, 0.5],  # 设置 y 轴范围 [-1, 1]，步长为 0.5
+            y_length=4.2,
+            x_length=6.2,
+            axis_config={"color": BLUE},  # 坐标轴颜色
+            tips=True,  # 不显示坐标轴箭头
+        ).to_corner(DR)
+        
+        # 添加坐标轴标签
+        labels = axes.get_axis_labels(x_label="x", y_label="y")
+        
+        def ConvexFunc(x):
+            return 0.25 * x ** 3 - 0.75 * x + 0.8
+        
+        ConvexFuncGraph = axes.plot(
+            ConvexFunc,
+            color = RED_A,
+            x_range=[-0.1, 2.3],
+        )
+                        
+        dotA = Dot(
+            axes.c2p(0, ConvexFunc(0)),
+            color=GREEN
+        )
+        dotB = Dot(
+            axes.c2p(2.25, ConvexFunc(2.25)),
+            color=GREEN
+        )
+        
+        line = Line(
+            start=dotA.get_center(),
+            end=dotB.get_center(),
+            color=GREEN
+        )
+        
+        # 比例
+        t = ValueTracker(0.6)
+        MovingDotColor = RED_C
+
+        MovingDotOnLine = always_redraw(
+            lambda: Dot(
+                line.point_from_proportion(t.get_value()),
+                color=MovingDotColor
+            )
+        )
+        
+        MovingDotOnCurve = always_redraw(
+            lambda: Dot(
+                axes.c2p(t.get_value() * 2.25, ConvexFunc(t.get_value() * 2.25)),
+                color=MovingDotColor
+            )
+        )
+        
+        VerticalLine = always_redraw(
+            lambda: DashedLine(
+                start=MovingDotOnCurve, end=MovingDotOnLine,
+                color=MovingDotColor
+            ).set_stroke(width=3)
+        )
+        
+        # lambda 标题
+        LambdaInGraph = always_redraw(
+            lambda: MathTex(
+                r"\lambda = ",
+                font_size=30
+            ).next_to(VerticalLine, direction=RIGHT)
+        )
+        NumberInGraph = always_redraw(
+            lambda: DecimalNumber(
+                t.get_value(),
+                num_decimal_places=2,
+                font_size=30
+            ).next_to(LambdaInGraph, direction=RIGHT)
+        )
+        
+        # 将坐标轴与标签一起渲染
+        self.play(
+            Create(axes), Write(labels),
+            Create(ConvexFuncGraph), 
+            Create(dotA), Create(dotB),
+        )
+        self.play(Create(line), run_time=0.7)
+        self.play(
+            FadeIn(MovingDotOnLine), FadeIn(MovingDotOnCurve),
+            Create(VerticalLine),
+            Write(LambdaInGraph), Write(NumberInGraph),
+            run_time=0.5
+        )
+        self.play(t.animate.set_value(1))
+        self.play(t.animate.set_value(0))
+        self.play(t.animate.set_value(0.4))
+        
+        self.wait(2)
+        
+    # def DefineConvexFunction_2(self):
+        
         
     def MyLogo(self):
         # 三个圆
@@ -44,7 +149,11 @@ class ConvexFunction(Scene):
         
         self.wait(.5)
         # 播放动画，显示三个圆形
-        self.play(Create(circle[0]), Create(circle[1]), Create(circle[2]))
+        self.play(
+            DrawBorderThenFill(circle[0], run_time=0.9), 
+            DrawBorderThenFill(circle[1], run_time=0.9), 
+            DrawBorderThenFill(circle[2], run_time=0.9)
+        )
         # 等待
         self.wait(.5)
         
