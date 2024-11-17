@@ -1,0 +1,14 @@
+\documentclass[preview]{standalone}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{amsthm}
+\everymath{\displaystyle}
+\newcommand{\lb}{\left\llbracket}
+\newcommand{\rb}{\right\rrbracket}
+\begin{document}
+\begin{align*}
+& f(x) \text{ 是 } (a, b) \text{ 上的下凸函数当且仅当任意 } (x_1, x_2) \subseteq (a, b),\\ & \text{ 任意 } x \in (x_1, x_2), \text{ 有} \\ & \frac{f(x) - f(x_1)}{x - x_1} \leqslant \frac{f(x_2) - f(x_1)}{x_2 - x_1} \leqslant \frac{f(x_2) - f(x)}{x_2 - x}
+\end{align*}
+\end{document}
