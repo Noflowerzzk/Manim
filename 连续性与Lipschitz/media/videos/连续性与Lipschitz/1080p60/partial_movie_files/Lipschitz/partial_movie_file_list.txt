@@ -1,0 +1,8 @@
+# This file is used internally by FFMPEG.
+file 'file:D:/Codes/Manim/连续性与Lipschitz/media/videos/连续性与Lipschitz/1080p60/partial_movie_files/Lipschitz/3977891868_3535898174_223132457.mp4'
+file 'file:D:/Codes/Manim/连续性与Lipschitz/media/videos/连续性与Lipschitz/1080p60/partial_movie_files/Lipschitz/2852726489_3233848570_1865605534.mp4'
+file 'file:D:/Codes/Manim/连续性与Lipschitz/media/videos/连续性与Lipschitz/1080p60/partial_movie_files/Lipschitz/2852726489_2419554316_2861691378.mp4'
+file 'file:D:/Codes/Manim/连续性与Lipschitz/media/videos/连续性与Lipschitz/1080p60/partial_movie_files/Lipschitz/2852726489_3310666124_2665589439.mp4'
+file 'file:D:/Codes/Manim/连续性与Lipschitz/media/videos/连续性与Lipschitz/1080p60/partial_movie_files/Lipschitz/2852726489_1943334980_1063334135.mp4'
+file 'file:D:/Codes/Manim/连续性与Lipschitz/media/videos/连续性与Lipschitz/1080p60/partial_movie_files/Lipschitz/2852726489_2374368727_2127920995.mp4'
+file 'file:D:/Codes/Manim/连续性与Lipschitz/media/videos/连续性与Lipschitz/1080p60/partial_movie_files/Lipschitz/2852726489_1704852926_2801236162.mp4'
